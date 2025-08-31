@@ -4,7 +4,7 @@ class_name Pointcloud
 extends MultiMeshInstance3D
 
 var points: Array[Vector3] = []
-var colors: Array[Vector3] = []
+var colors: Array[Color] = []
 
 func _ready():
 	multimesh = MultiMesh.new()
@@ -21,14 +21,14 @@ func _ready():
 	
 	multimesh.mesh=pmesh
 
-func add_points(new_points:Array[Vector3],new_colors:Array[Vector3]):
+func add_points(new_points:Array[Vector3],new_colors:Array[Color]):
 	points.append_array(new_points)
 	colors.append_array(new_colors)
 	set_points(points, colors)
 
-func set_points(points:Array[Vector3],colors:Array[Vector3]):
+func set_points(points:Array[Vector3],colors:Array[Color]):
 	multimesh.instance_count = len(points)
 	
 	for i in multimesh.instance_count:
 		multimesh.set_instance_transform(i, Transform3D(Basis(), points[i]))
-		multimesh.set_instance_color(i,Color(colors[i].x/256.0,colors[i].y/256.0,colors[i].z/256.0))
+		multimesh.set_instance_color(i,colors[i])

@@ -26,7 +26,6 @@ pose = &"aim"
 script = ExtResource("2_a0tk4")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="XROrigin3D/RightHand"]
-visible = false
 size = Vector3(0.05, 0.05, 0.05)
 
 [node name="Hand_Pointcloud" type="MultiMeshInstance3D" parent="XROrigin3D/RightHand"]
