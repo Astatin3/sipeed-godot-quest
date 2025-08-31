@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://bytlha0qtt0s3"]
+
+[ext_resource type="Script" uid="uid://b30x7woiqqavh" path="res://node_3d.gd" id="1_a202f"]
+[ext_resource type="Script" uid="uid://bcj10ndqg8ru5" path="res://right_hand.gd" id="2_a0tk4"]
+[ext_resource type="Script" uid="uid://bx3sjcpcrnkr" path="res://pointcloud.gd" id="3_r3fl7"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_a202f")
+
+[node name="World_Pointcloud" type="MultiMeshInstance3D" parent="."]
+script = ExtResource("3_r3fl7")
+metadata/_custom_type_script = "uid://bx3sjcpcrnkr"
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+
+[node name="LeftHand" type="XRController3D" parent="XROrigin3D"]
+tracker = &"left_hand"
+pose = &"aim"
+show_when_tracked = true
+
+[node name="RightHand" type="XRController3D" parent="XROrigin3D"]
+tracker = &"right_hand"
+pose = &"aim"
+script = ExtResource("2_a0tk4")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="XROrigin3D/RightHand"]
+visible = false
+size = Vector3(0.05, 0.05, 0.05)
+
+[node name="Hand_Pointcloud" type="MultiMeshInstance3D" parent="XROrigin3D/RightHand"]
+script = ExtResource("3_r3fl7")
+metadata/_custom_type_script = "uid://bx3sjcpcrnkr"
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+visible = false
